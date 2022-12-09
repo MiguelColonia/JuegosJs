@@ -1,0 +1,441 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+/* Establece el fondo y el color de la página */
+html, body {
+    background: #a41313;
+    
+    color: antiquewhite;
+
+    /* Establece la fuente y el tamaño del texto */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+
+    /* Oculta el scrollbar */
+    overflow: hidden;
+}
+
+/* Desactiva la selección de texto */
+html, body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+/* Establece las variables de posición y rotación aleatorias para los dados */
+html, body {
+    /* Establece el color de fondo a verde */
+    background-color: #00FF00;
+
+    /* Agrega bordes marrones a todos los lados del elemento */
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #8B4513;
+
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #8B4513;
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #8B4513;
+
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: #8B4513;
+}
+
+
+/* Establece las variables de origen y tiempo de animación para el lanzamiento de dados */
+html, body {
+    --throw-origin-x: 2;
+    --throw-origin-y: -1;
+    --throw-animation-time: 2s;
+}
+
+h1 {
+    font-size: 24px;
+    pointer-events: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    pointer-events: none;
+}
+
+.area {
+    border: 1px cyan solid;
+    margin: 25px;
+}
+
+#play-area {
+    width:100%;
+    height:100%;
+}
+
+#held-area {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: rgba(200, 22, 22, 0.3);
+    width: 12vw;
+    min-width: 100px;
+    height:100%;
+    max-height: 250px;
+    padding: 20px;
+}
+
+/* Dice  */
+.die {
+    height: 50px;
+    width: 50px; 
+    border: solid 1px black;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10%;
+}
+
+.die-point-value {
+    color:chartreuse;
+    font-size: 14px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    display: block;
+    position: relative;
+    left: 30px;
+    top: 50px;
+}
+
+
+.die-animation {
+    animation: throw var(--throw-animation-time);
+    animation-fill-mode: forwards;
+}
+
+@keyframes throw {
+    0% {
+        transform: translateX(var(--throw-origin-x)) translateY(var(--throw-origin-y)) rotate(0deg); 
+    }
+  
+    100% {
+        transform: translateX(var(--random-point-x)) translateY(var(--random-point-y)) rotate(var(--random-rotation)); 
+    }
+}
+
+.die:active {
+    border: 1px red solid;
+}
+
+.scoring {
+    cursor: grab; 
+    transition: border 0.08s ease-out;
+}
+
+.scoring:hover {
+    border: antiquewhite 4px solid;
+}
+
+.scoring:active {
+    background: antiquewhite;
+    cursor: grabbing;
+}
+
+.scoring-solo {
+    border: 4px solid blue;
+}
+
+.scoring-group {
+    border: 4px solid orange;
+}
+
+.scoring-straight {
+    border: 4px solid purple;
+}
+
+.no-click {
+    pointer-events: none;
+}
+
+.absolute {
+    position: absolute;
+}
+
+
+/* CSS Dice w/ Dots */
+/* below taken from */
+ /* https://betterprogramming.pub/creating-dice-in-flexbox-in-css-a02a5d85e516 */
+.dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color:white;
+    pointer-events: none;
+}
+
+.first-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.second-face {
+    display: flex;
+    justify-content: space-between;
+}
+  
+  .second-face .dot:nth-of-type(2) {
+    align-self: flex-end;
+}
+  
+  .third-face {
+    display: flex;
+    justify-content: space-between;
+}
+  
+  .third-face .dot:nth-of-type(1) {
+    align-self :flex-end;
+}
+  
+  .third-face .dot:nth-of-type(2) {
+    align-self :center;
+}
+    
+.fourth-face , .sixth-face, .fifth-face{
+    display: flex;
+    justify-content: space-between;
+}
+
+.fourth-face .column , .sixth-face .column, .fifth-face .column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fifth-face .column:nth-of-type(2) {
+    justify-content: center;
+}
+/* above taken from */
+/* https://betterprogramming.pub/creating-dice-in-flexbox-in-css-a02a5d85e516 */
+
+
+/* Scoreboard */
+.score {
+    float: right;
+    text-align: right;
+
+    margin: auto 20px;
+}
+
+.label-name {
+    display: inline;
+    padding: 0px 5px;
+}
+
+.turn-indicator {
+    border-left: 5px dotted antiquewhite;
+    
+}
+
+.scorebar {
+    display: block;
+    width: 100%;
+    height: 5px;
+    border: 1px gray solid;
+    margin: 4px 0;
+}
+
+#scorebar-fill-player {
+    background: chartreuse;
+    width: 0%;
+    height: 100%;
+    transition: width 0.5s;
+}
+
+#scorebar-fill-cpu {
+    background: red;
+    width: 0%;
+    height: 100%;
+    transition: width 0.5s;
+}
+
+#round {
+    font-size:36px;
+}
+
+#message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:25%;
+    left:0%;
+    color:antiquewhite;
+    background: rgba(0,0,0,0.5);
+    font-size: 40px;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    z-index: 1;
+}
+
+/* Buttons  */
+a.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+
+}
+
+#button-stand {
+    width: 15vw;
+    min-width: 200px;
+    height: 100%;
+    font-weight: bold;
+    color: chartreuse;
+    border: 4px solid chartreuse;
+    background: transparent;
+}
+
+#button-stand:hover {
+    border:4px antiquewhite solid;
+    cursor: pointer;
+}
+
+#button-stand:active {
+    border: 2px cyan solid !important;
+    cursor: grab;
+    background: antiquewhite;
+}
+
+#button-roll {
+    bottom: 0px;
+    width: 200px;
+    height: 200px;
+    font-size: 30px;
+    border-radius: 50%;
+    border: 4px black solid;
+    background: rgba(0,0,0,0.3);
+    color:antiquewhite;
+    
+}
+
+#button-roll:hover {
+    border: 8px chartreuse solid !important;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#button-roll:active {
+    border: 2px cyan solid !important;
+    cursor: grab;
+    background: antiquewhite;
+}
+
+.disabled {
+    visibility: hidden;
+}
+
+/* Console colors and styling */
+.red {
+    color: red;
+}
+
+.red-bold {
+    color:red;
+    font-weight: bold;
+}
+
+.bg-red {
+    background: red;
+    color: antiquewhite;
+}
+
+.bg-green {
+    background: chartreuse;
+    color: black;
+}
+
+.green {
+    color: chartreuse;
+}
+
+.black {
+    color: black;
+}
+
+.cyan {
+    color: cyan;
+}
+
+.gray {
+    color: gray;
+}
+
+#console-container {
+    width: 10vw;
+    min-width: 200px;
+    height:35vh;
+    max-height:250px;
+    padding: 10px;
+    margin-top:10px;
+    overflow-y: scroll;
+    opacity: 1;
+}
+
+#console-container::-webkit-scrollbar {
+    width: 1em;
+  }
+
+.console-line {
+    display: block;
+    width: 100%;
+    margin:2px;
+    font-size: 14px;
+    text-align: right;
+}
+
+
+/* Grid */
+/* I used https://grid.layoutit.com/ to generate this */
+  .grid-container {
+    height: 97vh;
+    display: grid;
+    grid-template-columns: 0.1fr 1.2fr 3.1fr 1.4fr 0.1fr;
+    grid-template-rows: 0.1fr 0.9fr 2.9fr 0.5fr 3.2fr 0.1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". . . . ."
+      ". scoreboard playArea heldArea ."
+      ". . playArea heldArea ."
+      ". . playArea roundInfo ."
+      ". rollButton playArea console ."
+      ". . . . .";
+  }
+  .scoreboard { 
+      grid-area: scoreboard; 
+      padding: 10px;
+    }
+  
+  .heldArea { grid-area: heldArea; display: flex; justify-content: center; align-items: center;  }
+  
+  .roundInfo { grid-area: roundInfo; display: flex; justify-content: center; align-items: center; }
+  
+  .console { grid-area: console; display: flex; justify-content: center; align-items: center;}
+  
+  .rollButton { grid-area: rollButton; display: flex; justify-content: center; align-items: center; }
+  
+  .playArea { grid-area: playArea; }
